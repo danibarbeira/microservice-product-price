@@ -41,4 +41,4 @@ Java 21 and Apache Maven are required to build and deploy the project. Simply ru
 
 The project includes an embedded tomcat web server so running the project is hassle-free. Once built and packaged, it can be run from the project root directory using the following command:
 
-```java -jar target/product-price-service-0.1.0.jar```
+```java -jar starter/target/starter-0.1.0.jar```
