@@ -1,7 +1,7 @@
 package com.inditex.starter;
 
-import com.inditex.input.request.ProductPriceRequest;
-import com.inditex.input.response.ProductPriceResponse;
+import com.inditex.application.request.ProductPriceRequest;
+import com.inditex.application.response.ProductPriceResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
