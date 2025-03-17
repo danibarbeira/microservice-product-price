@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.inditex</groupId>
         <artifactId>product-price-service</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>application</artifactId>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>domain</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
