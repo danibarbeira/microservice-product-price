@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
@@ -62,21 +63,23 @@ class ProductPriceServiceApplicationTests {
 
         HttpEntity<ProductPriceRequest> request = new HttpEntity<>(productPriceRequest, headers);
 
-        ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
+        ResponseEntity<String> response = this.restTemplate.postForEntity(uri, request, String.class);
 
-        Assertions.assertEquals(404, response.getStatusCode().value());
+        Assertions.assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value());
+        Assertions.assertEquals("Price for product at given date not found!", response.getBody());
     }
 
     @Test
     void givenEmptyBody_whenRequestIsExecuted_thenDefaultResponseContentTypeIsJson() {
         log.info("Checking response content type on request with empty body");
-        String expectedMimeType = "application/json";
+        String expectedMimeType = "application/problem+json";
         HttpHeaders headers = new HttpHeaders();
 
         HttpEntity<ProductPriceRequest> request = new HttpEntity<>(null, headers);
 
         ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
 
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode().value());
         Assertions.assertEquals(expectedMimeType, Objects.requireNonNull(response.getHeaders().getContentType()).toString());
     }
 
@@ -93,13 +96,13 @@ class ProductPriceServiceApplicationTests {
 
         ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
 
-        Assertions.assertEquals(200, response.getStatusCode().value());
-        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).price()));
-        Assertions.assertEquals(35455L, response.getBody().productId());
-        Assertions.assertEquals(1, response.getBody().brandId());
-        Assertions.assertEquals(1, response.getBody().priceList());
-        Assertions.assertTrue(queryDate.isAfter(response.getBody().startDate()));
-        Assertions.assertTrue(queryDate.isBefore(response.getBody().endDate()));
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
+        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).getPrice()));
+        Assertions.assertEquals(35455L, response.getBody().getProductId());
+        Assertions.assertEquals(1, response.getBody().getBrandId());
+        Assertions.assertEquals(1, response.getBody().getPriceList());
+        Assertions.assertTrue(queryDate.isAfter(response.getBody().getStartDate()));
+        Assertions.assertTrue(queryDate.isBefore(response.getBody().getEndDate()));
     }
 
     @Test
@@ -115,13 +118,13 @@ class ProductPriceServiceApplicationTests {
 
         ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
 
-        Assertions.assertEquals(200, response.getStatusCode().value());
-        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).price()));
-        Assertions.assertEquals(35455L, response.getBody().productId());
-        Assertions.assertEquals(1, response.getBody().brandId());
-        Assertions.assertEquals(2, response.getBody().priceList());
-        Assertions.assertTrue(queryDate.isAfter(response.getBody().startDate()));
-        Assertions.assertTrue(queryDate.isBefore(response.getBody().endDate()));
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
+        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).getPrice()));
+        Assertions.assertEquals(35455L, response.getBody().getProductId());
+        Assertions.assertEquals(1, response.getBody().getBrandId());
+        Assertions.assertEquals(2, response.getBody().getPriceList());
+        Assertions.assertTrue(queryDate.isAfter(response.getBody().getStartDate()));
+        Assertions.assertTrue(queryDate.isBefore(response.getBody().getEndDate()));
     }
 
     @Test
@@ -137,13 +140,13 @@ class ProductPriceServiceApplicationTests {
 
         ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
 
-        Assertions.assertEquals(200, response.getStatusCode().value());
-        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).price()));
-        Assertions.assertEquals(35455L, response.getBody().productId());
-        Assertions.assertEquals(1, response.getBody().brandId());
-        Assertions.assertEquals(1, response.getBody().priceList());
-        Assertions.assertTrue(queryDate.isAfter(response.getBody().startDate()));
-        Assertions.assertTrue(queryDate.isBefore(response.getBody().endDate()));
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
+        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).getPrice()));
+        Assertions.assertEquals(35455L, response.getBody().getProductId());
+        Assertions.assertEquals(1, response.getBody().getBrandId());
+        Assertions.assertEquals(1, response.getBody().getPriceList());
+        Assertions.assertTrue(queryDate.isAfter(response.getBody().getStartDate()));
+        Assertions.assertTrue(queryDate.isBefore(response.getBody().getEndDate()));
     }
 
     @Test
@@ -159,13 +162,13 @@ class ProductPriceServiceApplicationTests {
 
         ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
 
-        Assertions.assertEquals(200, response.getStatusCode().value());
-        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).price()));
-        Assertions.assertEquals(35455L, response.getBody().productId());
-        Assertions.assertEquals(1, response.getBody().brandId());
-        Assertions.assertEquals(3, response.getBody().priceList());
-        Assertions.assertTrue(queryDate.isAfter(response.getBody().startDate()));
-        Assertions.assertTrue(queryDate.isBefore(response.getBody().endDate()));
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
+        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).getPrice()));
+        Assertions.assertEquals(35455L, response.getBody().getProductId());
+        Assertions.assertEquals(1, response.getBody().getBrandId());
+        Assertions.assertEquals(3, response.getBody().getPriceList());
+        Assertions.assertTrue(queryDate.isAfter(response.getBody().getStartDate()));
+        Assertions.assertTrue(queryDate.isBefore(response.getBody().getEndDate()));
     }
 
     @Test
@@ -181,13 +184,13 @@ class ProductPriceServiceApplicationTests {
 
         ResponseEntity<ProductPriceResponse> response = this.restTemplate.postForEntity(uri, request, ProductPriceResponse.class);
 
-        Assertions.assertEquals(200, response.getStatusCode().value());
-        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).price()));
-        Assertions.assertEquals(35455L, response.getBody().productId());
-        Assertions.assertEquals(1, response.getBody().brandId());
-        Assertions.assertEquals(4, response.getBody().priceList());
-        Assertions.assertTrue(queryDate.isAfter(response.getBody().startDate()));
-        Assertions.assertTrue(queryDate.isBefore(response.getBody().endDate()));
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
+        Assertions.assertEquals(0, expectedPrice.compareTo(Objects.requireNonNull(response.getBody()).getPrice()));
+        Assertions.assertEquals(35455L, response.getBody().getProductId());
+        Assertions.assertEquals(1, response.getBody().getBrandId());
+        Assertions.assertEquals(4, response.getBody().getPriceList());
+        Assertions.assertTrue(queryDate.isAfter(response.getBody().getStartDate()));
+        Assertions.assertTrue(queryDate.isBefore(response.getBody().getEndDate()));
     }
 
 }
