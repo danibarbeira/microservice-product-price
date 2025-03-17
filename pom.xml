@@ -14,6 +14,9 @@
     <packaging>pom</packaging>
     <name>product-price-service</name>
     <description>Technical test for Inditex</description>
+    <scm>
+        <developerConnection>scm:git:https://github.com/danibarbeira/microservice-product-price.git</developerConnection>
+    </scm>
     <modules>
         <module>domain</module>
         <module>starter</module>
@@ -94,6 +97,11 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.1.1</version>
             </plugin>
         </plugins>
     </build>
