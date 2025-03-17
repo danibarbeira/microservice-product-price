@@ -9,14 +9,14 @@
     </parent>
     <groupId>com.inditex</groupId>
     <artifactId>product-price-service</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>product-price-service</name>
     <description>Technical test for Inditex</description>
     <scm>
         <developerConnection>scm:git:https://github.com/danibarbeira/microservice-product-price.git
         </developerConnection>
-        <tag>v1.0.1-rc0</tag>
+        <tag>HEAD</tag>
     </scm>
     <modules>
         <module>domain</module>
