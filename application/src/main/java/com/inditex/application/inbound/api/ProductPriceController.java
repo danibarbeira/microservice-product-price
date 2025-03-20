@@ -5,7 +5,8 @@ import com.inditex.application.response.ProductPriceResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
+import reactor.core.publisher.Mono;
 
 public interface ProductPriceController {
-    ResponseEntity<ProductPriceResponse> obtainProductPrice(@Valid @NotNull ProductPriceRequest productPriceRequest);
+    Mono<ProductPriceResponse> obtainProductPrice(@Valid @NotNull ProductPriceRequest productPriceRequest);
 }
