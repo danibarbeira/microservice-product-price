@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-class DomainTest {
+class DomainTests {
 
     @Test
     void givenNewProductPriceNotFoundException_whenCreated_thenMessageIsEquals() {

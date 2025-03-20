@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Slf4j
-class ApplicationTest {
+class ApplicationTests {
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH.mm.ss");
 
