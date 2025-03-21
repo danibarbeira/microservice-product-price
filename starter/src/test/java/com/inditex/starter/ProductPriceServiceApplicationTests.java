@@ -51,7 +51,7 @@ class ProductPriceServiceApplicationTests {
 
     @Test
     void contextLoads() {
-
+        Assertions.assertNotNull(restTemplate);
     }
 
     @Test

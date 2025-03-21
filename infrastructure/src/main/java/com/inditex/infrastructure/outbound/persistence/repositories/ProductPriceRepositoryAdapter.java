@@ -6,10 +6,9 @@ import com.inditex.infrastructure.outbound.persistence.entities.ProductPriceEnti
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -21,7 +20,7 @@ public class ProductPriceRepositoryAdapter implements ProductPriceRepository {
 
     @Override
     public Optional<ProductPrice> findPriceForProductAtDate(Long productId, Integer brandId, LocalDateTime queryDate) {
-        List<ProductPriceEntity> productPriceEntities = productPriceJpaRepository.findProductPriceAtDate(productId, brandId, queryDate);
-        return Optional.ofNullable(CollectionUtils.isEmpty(productPriceEntities) ? null : modelMapper.map(productPriceEntities.getFirst(), ProductPrice.class));
+        ProductPriceEntity productPriceEntity = productPriceJpaRepository.findProductPriceAtDate(productId, brandId, queryDate);
+        return Optional.ofNullable(Objects.isNull(productPriceEntity) ? null : modelMapper.map(productPriceEntity, ProductPrice.class));
     }
 }
