@@ -25,7 +25,7 @@ public class ProductPriceRestController implements ProductPriceController {
 
     private ProductPriceResponse productPriceResponse = null;
 
-    @PostMapping(value = "/price")
+    @PostMapping(path = "/price")
     public Mono<ProductPriceResponse> obtainProductPrice(@RequestBody ProductPriceRequest productPriceRequest) {
 
         val product = productPriceService.findPriceForProductAtDate(productPriceRequest.productId(), productPriceRequest.brandId(), productPriceRequest.requestDateTime());
